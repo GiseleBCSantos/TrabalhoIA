@@ -43,3 +43,12 @@ export type Message = {
   sender: "user" | "bot";
   timestamp: Date;
 };
+
+export type TailwindColorClass = {
+  name: string;
+  hex: string;
+  className: string;
+  bgClass: string;
+  textClass: string;
+  borderClass: string;
+};

@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useCallback } from "react";
 import type { GeneratePaletteResult } from "../types/shared-types";
 

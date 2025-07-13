@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 import { ColorChatbot } from "../components/color-chatbot";
 import { PaletteDisplay } from "../components/palette-display";
@@ -19,13 +17,10 @@ export const Home = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
       <header className="bg-white shadow-sm border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 py-6">
           <div className="text-center">
-            <h1 className="text-3xl font-bold text-gray-900">
-              Gerador de Paleta de Cores com IA
-            </h1>
+            <h1 className="text-3xl font-bold text-gray-900">ColorMind</h1>
             <p className="mt-2 text-gray-600">
               Assistente inteligente que cria paletas personalizadas usando
               teoria das cores e IA

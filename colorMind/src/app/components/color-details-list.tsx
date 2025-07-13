@@ -1,5 +1,3 @@
-"use client";
-
 import type { ColorInfo } from "../types/shared-types";
 
 type ColorDetailsListProps = {
@@ -7,24 +5,22 @@ type ColorDetailsListProps = {
   copyToClipboard: (text: string) => void;
 };
 
-export function ColorDetailsList({
+export const ColorDetailsList = ({
   palette,
   copyToClipboard,
-}: ColorDetailsListProps) {
+}: ColorDetailsListProps) => {
   return (
     <div>
       <h4 className="font-semibold text-gray-900 mb-4">Detalhes das Cores</h4>
       <div className="grid grid-cols-1 gap-4">
         {palette.map((color, index) => (
           <div key={index} className="group">
-            {/* Color Swatch */}
             <div
               className="w-full h-20 rounded-lg shadow-sm border border-gray-200 cursor-pointer transition-transform hover:scale-[1.02]"
               style={{ backgroundColor: color.hex }}
               onClick={() => copyToClipboard(color.hex)}
             />
 
-            {/* Color Info */}
             <div className="mt-3 space-y-2">
               <div className="flex items-center justify-between">
                 <h4 className="font-semibold text-gray-900">{color.name}</h4>
@@ -43,7 +39,6 @@ export function ColorDetailsList({
 
               <p className="text-sm text-gray-600">{color.description}</p>
 
-              {/* Psychology */}
               {color.psychology && (
                 <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-2">
                   <p className="text-xs text-yellow-800">
@@ -53,7 +48,6 @@ export function ColorDetailsList({
                 </div>
               )}
 
-              {/* Color Codes */}
               <div className="space-y-1">
                 <div className="flex items-center justify-between">
                   <span className="text-xs text-gray-500">HEX:</span>
@@ -123,7 +117,6 @@ export function ColorDetailsList({
                 </div>
               </div>
 
-              {/* Usage and Accessibility */}
               <div className="pt-2 border-t border-gray-100">
                 <p className="text-xs text-gray-500 mb-1">Uso sugerido:</p>
                 <p className="text-xs text-gray-700">{color.usage}</p>
@@ -154,4 +147,4 @@ export function ColorDetailsList({
       </div>
     </div>
   );
-}
+};

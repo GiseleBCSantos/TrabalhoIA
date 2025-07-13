@@ -1,8 +1,5 @@
-"use client";
-
 import type React from "react";
 import { useState, useRef, useEffect } from "react";
-
 import { usePaletteGenerator } from "../hooks/use-palette-generator";
 import type { ColorInfo, Message } from "../types/shared-types";
 
@@ -34,7 +31,7 @@ export const ColorChatbot = ({
     scrollToBottom();
   }, [messages]);
 
-  const { generatePalette, isGenerating, error } = usePaletteGenerator(); // Use o novo hook
+  const { generatePalette, isGenerating, error } = usePaletteGenerator();
 
   const generateResponse = async (userMessage: string): Promise<string> => {
     const message = userMessage.toLowerCase();
@@ -69,7 +66,6 @@ export const ColorChatbot = ({
         theme = userMessage.trim();
       }
 
-      // Use o hook para gerar a paleta
       const result = await generatePalette(theme, userMessage);
 
       if (result.palette) {
@@ -78,7 +74,7 @@ export const ColorChatbot = ({
         const generatedBy =
           result.metadata?.generated_by === "Google Gemini AI"
             ? "IA Gemini"
-            : "Fallback Local"; // Atualizado
+            : "Fallback Local";
         return (
           `🤖 Criei uma paleta personalizada com ${generatedBy} para "${theme}"!\n\n` +
           result.palette
@@ -89,8 +85,6 @@ export const ColorChatbot = ({
           "\n\n💡 Esta paleta considera teoria das cores, contraste e acessibilidade. Peça ajustes se precisar!"
         );
       } else {
-        // Se houver erro na geração, use uma mensagem de erro e uma paleta padrão
-        // A paleta de fallback já é retornada pelo hook em caso de erro
         return `❌ Desculpe, não consegui gerar uma paleta personalizada no momento. Motivo: ${
           result.error || "Erro desconhecido"
         }. Por favor, tente novamente ou descreva seu projeto de outra forma. Enquanto isso, exibo uma paleta padrão.`;
@@ -105,7 +99,6 @@ export const ColorChatbot = ({
       return "Cada cor tem um impacto psicológico específico! No painel à direita você pode ver a descrição e o impacto psicológico de cada cor da paleta atual.";
     }
 
-    // Resposta padrão - mas ainda assim gerar uma paleta
     const defaultTheme = "projeto moderno";
     const result = await generatePalette(defaultTheme, userMessage);
     if (result.palette) {
@@ -139,8 +132,6 @@ export const ColorChatbot = ({
     setMessages((prev) => [...prev, userMessage]);
     const currentInput = inputValue;
     setInputValue("");
-    // isTyping agora é controlado apenas por isGenerating do hook
-    // setIsTyping(true) // Removido
 
     try {
       const responseText = await generateResponse(currentInput);
@@ -162,7 +153,6 @@ export const ColorChatbot = ({
       };
       setMessages((prev) => [...prev, errorResponse]);
     } finally {
-      // setIsTyping(false) // Removido
     }
   };
 
@@ -187,12 +177,10 @@ export const ColorChatbot = ({
 
   return (
     <div className="flex flex-col h-full">
-      {/* Header */}
       <div className="bg-gray-50 border-b border-gray-200 px-6 py-4">
         <h3 className="text-lg font-semibold text-gray-900">
           🤖 Assistente IA de Cores (Gemini)
         </h3>{" "}
-        {/* Atualizado */}
         <p className="text-sm text-gray-600">
           {isGenerating
             ? "Gerando paleta com IA..."
@@ -200,7 +188,6 @@ export const ColorChatbot = ({
         </p>
       </div>
 
-      {/* Messages Container */}
       <div className="flex-1 overflow-y-auto p-6 space-y-4">
         {messages.map((message) => (
           <div
@@ -223,8 +210,7 @@ export const ColorChatbot = ({
           </div>
         ))}
 
-        {/* Typing/Generating Indicator */}
-        {isGenerating && ( // Use isGenerating do hook
+        {isGenerating && (
           <div className="flex justify-start">
             <div className="bg-gray-100 border border-gray-200 px-4 py-3 rounded-2xl">
               <div className="flex items-center space-x-2">
@@ -242,37 +228,33 @@ export const ColorChatbot = ({
                 <span className="text-xs text-gray-500 ml-2">
                   Criando com Gemini...
                 </span>{" "}
-                {/* Atualizado */}
               </div>
             </div>
           </div>
         )}
 
-        {/* Suggestions */}
-        {messages.length === 1 &&
-          !isGenerating && ( // Use isGenerating do hook
-            <div className="space-y-3">
-              <p className="text-sm text-gray-500 text-center">
-                Exemplos de solicitações:
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {suggestions.map((suggestion, index) => (
-                  <button
-                    key={index}
-                    onClick={() => handleSuggestionClick(suggestion)}
-                    className="px-3 py-2 text-xs bg-blue-50 text-blue-700 border border-blue-200 rounded-full hover:bg-blue-100 transition-colors"
-                  >
-                    {suggestion}
-                  </button>
-                ))}
-              </div>
+        {messages.length === 1 && !isGenerating && (
+          <div className="space-y-3">
+            <p className="text-sm text-gray-500 text-center">
+              Exemplos de solicitações:
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {suggestions.map((suggestion, index) => (
+                <button
+                  key={index}
+                  onClick={() => handleSuggestionClick(suggestion)}
+                  className="px-3 py-2 text-xs bg-blue-50 text-blue-700 border border-blue-200 rounded-full hover:bg-blue-100 transition-colors"
+                >
+                  {suggestion}
+                </button>
+              ))}
             </div>
-          )}
+          </div>
+        )}
 
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Input Container */}
       <div className="border-t border-gray-200 p-4">
         <div className="flex gap-3">
           <input
@@ -286,14 +268,14 @@ export const ColorChatbot = ({
                 : "Descreva seu projeto para uma paleta personalizada..."
             }
             className="flex-1 px-4 py-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            disabled={isGenerating} // Use isGenerating do hook
+            disabled={isGenerating}
           />
           <button
             onClick={handleSendMessage}
-            disabled={!inputValue.trim() || isGenerating} // Use isGenerating do hook
+            disabled={!inputValue.trim() || isGenerating}
             className="px-6 py-3 bg-blue-500 text-white rounded-full hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center gap-2"
           >
-            {isGenerating ? ( // Use isGenerating do hook
+            {isGenerating ? (
               <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
             ) : (
               <svg
