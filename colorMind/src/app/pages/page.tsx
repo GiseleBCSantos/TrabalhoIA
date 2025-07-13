@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { ColorChatbot } from "../components/color-chatbot";
-import { PaletteDisplay } from "../components/shared-types-display";
+import { PaletteDisplay } from "../components/palette-display";
 import type { ColorInfo } from "../types/shared-types";
 
 export const Home = () => {
