@@ -57,3 +57,13 @@ ColorMind é um site que utiliza inteligência artificial para gerar paletas de 
 ## 📦 Uso
 
 - Insira no seu .env a chave `VITE_GOOGLE_API_KEY` e o valor da sua chave.
+
+  ```bash
+  npm install
+  ```
+
+  ```bash
+  npm run dev
+  ```
+
+  Isso abrirá o app React localmente, normalmente em http://localhost:5173
