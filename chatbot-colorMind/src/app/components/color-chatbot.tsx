@@ -35,7 +35,7 @@ export const ColorChatbot = ({
     scrollToBottom();
   }, [messages]);
 
-  const { generatePalette, isGenerating, error } = usePaletteGenerator();
+  const { generatePalette, isGenerating } = usePaletteGenerator();
 
   const generateResponse = async (
     theme: string,

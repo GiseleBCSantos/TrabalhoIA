@@ -81,8 +81,14 @@ export function usePaletteGenerator() {
       setIsGenerating(true);
       setError(null);
 
-      const prompt = `Você é um especialista em teoria das cores, design e acessibilidade. Sua tarefa é criar uma paleta de cores harmoniosa e funcional baseada no tema fornecido.
+      const content: any = [
+        `Você é um especialista em teoria das cores, design e acessibilidade. Sua tarefa é criar uma paleta de cores harmoniosa e funcional.
 
+${
+  imageBase64
+    ? "CONTEXTO VISUAL: Analise a imagem fornecida para extrair as cores e o humor geral."
+    : ""
+}
 CONTEXTO DO USUÁRIO:
 Tema/Projeto: ${theme}
 Mensagem do usuário: ${userMessage}
@@ -193,7 +199,12 @@ REGRAS IMPORTANTES:
 - Garanta que a paleta funcione em conjunto e que todas as cores sejam visivelmente distintas e utilizáveis.
 - RESPONDA APENAS COM JSON, SEM TEXTO ADICIONAL.
 
-Tema: ${theme}`;
+Tema: ${theme}`,
+      ];
+
+      if (imageBase64) {
+        content.push({ type: "image", image: imageBase64 });
+      }
 
       try {
         if (!import.meta.env.VITE_GOOGLE_API_KEY) {
