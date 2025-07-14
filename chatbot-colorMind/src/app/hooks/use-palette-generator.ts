@@ -86,6 +86,11 @@ export function usePaletteGenerator() {
 CONTEXTO DO USUÁRIO:
 Tema/Projeto: ${theme}
 Mensagem do usuário: ${userMessage}
+${
+  imageBase64
+    ? "CONTEXTO VISUAL: Analise a imagem fornecida para extrair as cores e o humor geral."
+    : ""
+}
 
 DIRETRIZES PARA CRIAÇÃO DA PALETA:
 

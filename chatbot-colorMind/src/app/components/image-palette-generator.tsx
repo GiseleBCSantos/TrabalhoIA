@@ -19,7 +19,7 @@ export default function ImagePaletteGenerator({
 }: ImagePaletteGeneratorProps) {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
-  const { generatePalette } = usePaletteGenerator(); // Usar o hook
+  const { generatePalette } = usePaletteGenerator();
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {

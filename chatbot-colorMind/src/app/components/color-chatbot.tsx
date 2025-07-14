@@ -43,6 +43,7 @@ export const ColorChatbot = ({
     imageBase64?: string
   ): Promise<string> => {
     const result = await generatePalette(theme, userMessage, imageBase64);
+    console.log(imageBase64);
 
     if (result.palette) {
       updatePalette(result.palette);
@@ -83,6 +84,7 @@ export const ColorChatbot = ({
           : userMessageText,
         sender: "user",
         timestamp: new Date(),
+        imageUrl: imagePreviewUrl || undefined,
       },
     ]);
 
@@ -207,6 +209,14 @@ export const ColorChatbot = ({
                   : "bg-gray-100 text-gray-900 border border-gray-200"
               }`}
             >
+              {message.imageUrl && (
+                <img
+                  src={message.imageUrl || "/placeholder.svg"}
+                  alt="Imagem enviada pelo usuário"
+                  className="max-w-full h-auto rounded-lg mb-2"
+                  style={{ maxHeight: "150px" }}
+                />
+              )}
               <div className="text-sm leading-relaxed whitespace-pre-line">
                 {message.text}
               </div>

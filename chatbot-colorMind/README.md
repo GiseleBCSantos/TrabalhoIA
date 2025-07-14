@@ -19,6 +19,8 @@ ColorMind é um site que utiliza inteligência artificial para gerar paletas de 
 
 ![alt text](./public/image.png)
 ![alt text](./public/image2.png)
+![alt text](./public/image3.png)
+![alt text](./public/image4.png)
 
 ---
 
