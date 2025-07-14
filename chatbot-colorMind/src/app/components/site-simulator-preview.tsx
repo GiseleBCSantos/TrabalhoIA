@@ -26,9 +26,6 @@ export const SiteSimulationPreview = ({
       ?.hex ||
     palette[1]?.hex ||
     "#FFFFFF";
-  const mainTextColor =
-    palette.find((c) => c.usage.toLowerCase().includes("texto principal"))
-      ?.hex || (isLightColor(primaryBg) ? darkestColor : lightestColor);
   const accentColor =
     palette.find((c) => c.role === "destaque")?.hex ||
     palette[3]?.hex ||
@@ -42,7 +39,6 @@ export const SiteSimulationPreview = ({
     isLightColor(bgColor) ? darkestColor : lightestColor;
 
   const headerFooterTextColor = getContrastingTextColor(primaryBg);
-  const mainContentAreaTextColor = getContrastingTextColor(mainContentBg);
   const cardBgColor =
     palette.find((c) => c.usage.toLowerCase().includes("cards"))?.hex ||
     secondarySupportColor;

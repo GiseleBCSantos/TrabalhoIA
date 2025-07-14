@@ -1,8 +1,5 @@
 import { useState } from "react";
-import type {
-  PaletteDisplayProps,
-  TailwindColorClass,
-} from "../types/shared-types";
+import type { PaletteDisplayProps } from "../types/shared-types";
 
 import { PaletteHeader } from "./palette-header";
 import { PalettePreviewSwatches } from "./palette-preview-watches";
