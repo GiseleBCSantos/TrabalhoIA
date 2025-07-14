@@ -17,7 +17,8 @@ ColorMind é um site que utiliza inteligência artificial para gerar paletas de 
 
 ## 🚀 Demonstração
 
-> Em breve! _(link para a versão publicada com Vercel, Netlify, etc.)_
+![alt text](./public/image.png)
+![alt text](./public/image2.png)
 
 ---
 
@@ -36,7 +37,7 @@ ColorMind é um site que utiliza inteligência artificial para gerar paletas de 
 
 - [React](https://reactjs.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
-- [OpenAI API](https://platform.openai.com/)
+- [Google Gemini API](https://ai.google.dev/)
 - Vite (para build e dev server)
 
 ---
@@ -44,7 +45,7 @@ ColorMind é um site que utiliza inteligência artificial para gerar paletas de 
 ## 🧠 Como Funciona
 
 1. O usuário digita um tema (ex: "neve", "jardim zen")
-2. A aplicação envia esse tema para a API do ChatGPT
+2. A aplicação envia esse tema para a API do Gemini
 3. A IA responde com uma paleta JSON com 5 cores
 4. O sistema:
    - Exibe a paleta
@@ -53,18 +54,6 @@ ColorMind é um site que utiliza inteligência artificial para gerar paletas de 
 
 ---
 
-## 📦 Instalação
+## 📦 Uso
 
-```bash
-# Clone o repositório
-git clone https://github.com/seu-usuario/colormind.git
-
-# Acesse a pasta do projeto
-cd colormind
-
-# Instale as dependências
-npm install
-
-# Crie um arquivo .env com sua chave da OpenAI
-touch .env
-```
+- Insira no seu .env a chave `VITE_GOOGLE_API_KEY` e o valor da sua chave.
