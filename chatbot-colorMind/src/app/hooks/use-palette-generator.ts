@@ -75,7 +75,8 @@ export function usePaletteGenerator() {
   const generatePalette = useCallback(
     async (
       theme: string,
-      userMessage: string
+      userMessage: string,
+      imageBase64?: string
     ): Promise<GeneratePaletteResult> => {
       setIsGenerating(true);
       setError(null);
